@@ -9,12 +9,7 @@ import {
 } from 'react-native';
 import React, {useRef, useState} from 'react';
 import Images from '../constants/Images';
-import {
-  scale,
-  verticalScale,
-  moderateScale,
-  moderateVerticalScale,
-} from 'react-native-size-matters';
+import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
 import Bultenim from './Bultenim';
 import Canli from './Canli';
 import MacOnu from './MacOnu';
@@ -42,6 +37,7 @@ const MenuIcerik = () => {
   const opacityValues = useRef(
     SECTIONS.map(() => new Animated.Value(1)),
   ).current;
+  const scrollViewRef = useRef(null);
 
   const handleItemPress = index => {
     setSelectedItem(index);
@@ -51,20 +47,19 @@ const MenuIcerik = () => {
       duration: 200,
       useNativeDriver: true,
     }).start();
-  };
-
-  const resetSelectedItem = () => {
-    setSelectedItem(null);
+    scrollViewRef.current.scrollTo({x: 0, animated: false});
   };
 
   return (
     <View style={[styles.container, {justifyContent: 'space-between'}]}>
       <ScrollView
         horizontal
+        ref={scrollViewRef}
         showsHorizontalScrollIndicator={false}
         style={{
           height: moderateVerticalScale(50),
-        }}>
+        }}
+        contentContainerStyle={styles.scrollViewContentContainer}>
         {SECTIONS.map((item, index) => (
           <TouchableOpacity
             style={styles.bodyC}
@@ -100,7 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '90%',
+    width: '100%',
   },
   itemImage: {
     width: 24,
@@ -130,4 +125,5 @@ const styles = StyleSheet.create({
   buttonTxt: {
     color: 'white',
   },
+  scrollViewContentContainer: {},
 });

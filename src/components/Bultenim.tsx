@@ -1,11 +1,6 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {
-  scale,
-  verticalScale,
-  moderateScale,
-  moderateVerticalScale,
-} from 'react-native-size-matters';
+import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
 import Images from '../constants/Images';
 
 const Bültenim = () => {
@@ -31,13 +26,20 @@ const Bültenim = () => {
       icon: Images.img.ball,
     },
   ];
+  const handleFilter = item => {
+    // İlgili filtreleme işlemlerini burada gerçekleştireceğiz.
+    console.log(item);
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.bodyC}>
         <Text style={styles.canliText}>BÜLTENİM</Text>
         {bultenData.map(item => (
-          <TouchableOpacity style={styles.touchCanli} key={item.title}>
+          <TouchableOpacity
+            onPress={() => handleFilter(item)}
+            style={styles.touchCanli}
+            key={item.title}>
             <Image source={item.icon} style={styles.img} />
             <Text style={styles.txt}>{item.title}</Text>
           </TouchableOpacity>

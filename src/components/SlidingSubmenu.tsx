@@ -6,18 +6,12 @@ import {
   Animated,
   Text,
   Image,
-  ScrollView,
 } from 'react-native';
-import {
-  scale,
-  verticalScale,
-  moderateScale,
-  moderateVerticalScale,
-} from 'react-native-size-matters';
+import {moderateScale, moderateVerticalScale} from 'react-native-size-matters';
 import Images from '../constants/Images';
 import Menuİcerik from '../components/Menuİcerik';
 
-const SlidingSubmenu = ({route}) => {
+const SlidingSubmenu = () => {
   const [menuAcik, setMenuAcik] = useState(false);
   const menuOffset = useState(new Animated.Value(0))[0];
 
@@ -32,18 +26,16 @@ const SlidingSubmenu = ({route}) => {
 
   const menuTranslateX = menuOffset.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, 0], // Menülerin yatayda kaydırılacağı mesafe
+    outputRange: [0, 0],
   });
 
   return (
     <View style={styles.container}>
-      {/* Ana menü düğmesi */}
       <TouchableOpacity style={styles.addButton} onPress={toggleMenu}>
         <Image source={Images.img.filter} style={styles.img} />
         <Text style={styles.filterTxt}>Filtre</Text>
       </TouchableOpacity>
 
-      {/* Menüler */}
       {menuAcik && (
         <Animated.View
           style={[
@@ -87,7 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     elevation: 4,
     paddingVertical: moderateVerticalScale(8),
-    paddingHorizontal: moderateScale(16),
+    paddingHorizontal: moderateScale(30),
   },
   menuItem: {
     paddingHorizontal: moderateScale(8),

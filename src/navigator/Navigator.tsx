@@ -21,9 +21,6 @@ import BuzHokeyi from '../screens/categories/BuzHokeyi';
 import Hentbol from '../screens/categories/Hentbol';
 import UzunVadeli from '../screens/categories/UzunVadeli';
 import mma from '../screens/categories/mma';
-import Bültenim from '../components/Bultenim';
-import Canli from '../components/Canli';
-import MacOnu from '../components/MacOnu';
 import MenuIcerik from '../components/Menuİcerik';
 
 const Tab = createBottomTabNavigator();
